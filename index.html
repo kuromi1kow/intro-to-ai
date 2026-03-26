@@ -206,11 +206,79 @@
 
     /* ── Responsive ── */
     @media (max-width: 700px) {
-      .two-col, .topics-cols { flex-direction: column; gap: 12px; }
-      .topbar nav a { padding: 12px 9px; font-size: 0.78em; }
-      h1 { font-size: 1.6em; }
-      table { font-size: 0.82em; }
-      td, th { padding: 6px 8px; }
+      body { font-size: 14px; }
+
+      .wrap { padding: 0 16px; }
+
+      /* Topbar: stack brand + nav vertically */
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 16px;
+      }
+      .topbar .brand {
+        padding: 10px 0 4px;
+        font-size: 1em;
+      }
+      .topbar nav {
+        flex-wrap: wrap;
+        padding-bottom: 8px;
+      }
+      .topbar nav a {
+        padding: 6px 10px;
+        font-size: 0.78em;
+      }
+
+      h1 { font-size: 1.45em; }
+      h2 { font-size: 1.15em; margin-top: 24px; }
+
+      .two-col, .topics-cols {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      /* Table: convert to stacked cards on mobile */
+      table, thead, tbody, tr, th, td {
+        display: block;
+        width: 100%;
+      }
+      thead { display: none; }
+
+      tbody tr {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        margin-bottom: 4px;
+      }
+      tbody tr:hover td { background: transparent; }
+
+      td {
+        border-bottom: none;
+        padding: 2px 0;
+        font-size: 0.92em;
+      }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-family: 'Source Sans 3', Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 0.75em;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #999;
+        margin-bottom: 1px;
+      }
+      td.day { width: auto; }
+      td.day::before { content: 'Day'; }
+      td.topic::before { content: 'Topic'; }
+
+      .week-row td {
+        padding: 8px 0;
+      }
+      .week-row td::before { content: none; }
+
+      .resource-block {
+        padding: 12px 14px;
+      }
     }
   </style>
 </head>
@@ -284,7 +352,8 @@
     <p>
       Currently an <strong>AI Researcher at Boston University</strong>. Previously worked as a
       <strong>Machine Learning Engineer at the National Bank of Kazakhstan</strong>, applying ML and
-      data-driven approaches within a major central banking institution. 
+      data-driven approaches within a major central banking institution. Also contributed to projects
+      at <strong>Thirteen Lab</strong>.
     </p>
 
     <p>
@@ -383,51 +452,51 @@
         <tr>
           <td class="day">1</td>
           <td class="topic">What is AI?</td>
-          <td>AI vs ML vs deep learning vs data science; real-world AI products; prediction vs generation</td>
-          <td>List 5 AI products and explain what each one does.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">AI vs ML vs deep learning vs data science; real-world AI products; prediction vs generation</td>
+          <td data-label="Practice">List 5 AI products and explain what each one does.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">2</td>
           <td class="topic">Python for AI Beginners</td>
-          <td>Variables, loops, functions, notebooks, Colab workflow</td>
-          <td>Open a notebook and inspect a small dataset.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Variables, loops, functions, notebooks, Colab workflow</td>
+          <td data-label="Practice">Open a notebook and inspect a small dataset.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">3</td>
           <td class="topic">Data Science Basics</td>
-          <td>Structured vs unstructured data; features; labels; train-validation-test split</td>
-          <td>Choose target and input columns in a toy dataset.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Structured vs unstructured data; features; labels; train-validation-test split</td>
+          <td data-label="Practice">Choose target and input columns in a toy dataset.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">4</td>
           <td class="topic">Classification &amp; Metrics</td>
-          <td>Classification idea; accuracy; precision; recall; F1</td>
-          <td>Create a spam classification example and evaluate errors.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/4.pdf" target="_blank">J&amp;M Ch. 4</a></td>
+          <td data-label="Main Ideas">Classification idea; accuracy; precision; recall; F1</td>
+          <td data-label="Practice">Create a spam classification example and evaluate errors.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/4.pdf" target="_blank">J&amp;M Ch. 4</a></td>
         </tr>
         <tr>
           <td class="day">5</td>
           <td class="topic">How Models Learn</td>
-          <td>Loss functions; gradient descent; overfitting vs generalization</td>
-          <td>Explain why memorization is not real learning.</td>
-          <td><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank">3B1B: Neural Nets</a></td>
+          <td data-label="Main Ideas">Loss functions; gradient descent; overfitting vs generalization</td>
+          <td data-label="Practice">Explain why memorization is not real learning.</td>
+          <td data-label="Readings"><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" target="_blank">3B1B: Neural Nets</a></td>
         </tr>
         <tr>
           <td class="day">6</td>
           <td class="topic">Neural Networks</td>
-          <td>Layers; activations; embeddings; why deep learning matters</td>
-          <td>Draw a tiny neural network for sentiment classification.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/5.pdf" target="_blank">J&amp;M Ch. 5</a>, <a href="https://web.stanford.edu/~jurafsky/slp3/6.pdf" target="_blank">Ch. 6</a></td>
+          <td data-label="Main Ideas">Layers; activations; embeddings; why deep learning matters</td>
+          <td data-label="Practice">Draw a tiny neural network for sentiment classification.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/5.pdf" target="_blank">J&amp;M Ch. 5</a>, <a href="https://web.stanford.edu/~jurafsky/slp3/6.pdf" target="_blank">Ch. 6</a></td>
         </tr>
         <tr>
           <td class="day">7</td>
           <td class="topic">Week 1 Recap</td>
-          <td>Connect AI concepts to a real use case</td>
-          <td>Describe one real problem and an AI-based solution idea.</td>
-          <td><em>Review week.</em></td>
+          <td data-label="Main Ideas">Connect AI concepts to a real use case</td>
+          <td data-label="Practice">Describe one real problem and an AI-based solution idea.</td>
+          <td data-label="Readings"><em>Review week.</em></td>
         </tr>
 
         <!-- Week 2 -->
@@ -435,51 +504,51 @@
         <tr>
           <td class="day">8</td>
           <td class="topic">What is NLP?</td>
-          <td>Text classification, translation, summarization, question answering</td>
-          <td>Write 10 NLP tasks with their inputs and outputs.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/2.pdf" target="_blank">J&amp;M Ch. 2</a></td>
+          <td data-label="Main Ideas">Text classification, translation, summarization, question answering</td>
+          <td data-label="Practice">Write 10 NLP tasks with their inputs and outputs.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/2.pdf" target="_blank">J&amp;M Ch. 2</a></td>
         </tr>
         <tr>
           <td class="day">9</td>
           <td class="topic">Tokenization</td>
-          <td>Words, characters, bytes, type-token distinction, BPE intuition</td>
-          <td>Tokenize one sentence in three different ways.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/2.pdf" target="_blank">J&amp;M Ch. 2</a></td>
+          <td data-label="Main Ideas">Words, characters, bytes, type-token distinction, BPE intuition</td>
+          <td data-label="Practice">Tokenize one sentence in three different ways.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/2.pdf" target="_blank">J&amp;M Ch. 2</a></td>
         </tr>
         <tr>
           <td class="day">10</td>
           <td class="topic">Language Modeling</td>
-          <td>Next-token prediction, n-grams, probability of text</td>
-          <td>Build a simple bigram table from a paragraph.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/3.pdf" target="_blank">J&amp;M Ch. 3</a></td>
+          <td data-label="Main Ideas">Next-token prediction, n-grams, probability of text</td>
+          <td data-label="Practice">Build a simple bigram table from a paragraph.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/3.pdf" target="_blank">J&amp;M Ch. 3</a></td>
         </tr>
         <tr>
           <td class="day">11</td>
           <td class="topic">RNNs &amp; Sequence Models</td>
-          <td>Sequential context, RNN intuition, LSTMs, long-context limitations</td>
-          <td>Explain why earlier sequence models struggle with long text.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/13.pdf" target="_blank">J&amp;M Ch. 13</a></td>
+          <td data-label="Main Ideas">Sequential context, RNN intuition, LSTMs, long-context limitations</td>
+          <td data-label="Practice">Explain why earlier sequence models struggle with long text.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/13.pdf" target="_blank">J&amp;M Ch. 13</a></td>
         </tr>
         <tr>
           <td class="day">12</td>
           <td class="topic">Transformers &amp; Attention</td>
-          <td>Attention mechanism, parallelization, why transformers dominate</td>
-          <td>Mark which words in a sentence should attend strongly to each other.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/8.pdf" target="_blank">J&amp;M Ch. 8</a>, <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">Illustrated Transformer</a></td>
+          <td data-label="Main Ideas">Attention mechanism, parallelization, why transformers dominate</td>
+          <td data-label="Practice">Mark which words in a sentence should attend strongly to each other.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/8.pdf" target="_blank">J&amp;M Ch. 8</a>, <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank">Illustrated Transformer</a></td>
         </tr>
         <tr>
           <td class="day">13</td>
           <td class="topic">Large Language Models</td>
-          <td>Pretraining, autoregressive generation, GPT vs BERT vs T5</td>
-          <td>Compare one chatbot task and one classification task.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/7.pdf" target="_blank">J&amp;M Ch. 7</a>, <a href="https://web.stanford.edu/~jurafsky/slp3/10.pdf" target="_blank">Ch. 10</a></td>
+          <td data-label="Main Ideas">Pretraining, autoregressive generation, GPT vs BERT vs T5</td>
+          <td data-label="Practice">Compare one chatbot task and one classification task.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/7.pdf" target="_blank">J&amp;M Ch. 7</a>, <a href="https://web.stanford.edu/~jurafsky/slp3/10.pdf" target="_blank">Ch. 10</a></td>
         </tr>
         <tr>
           <td class="day">14</td>
           <td class="topic">Prompting &amp; LLM Use</td>
-          <td>System prompts, zero-shot, few-shot, hallucinations, grounding</td>
-          <td>Write a strong prompt for summarizing a report.</td>
-          <td><a href="https://web.stanford.edu/~jurafsky/slp3/9.pdf" target="_blank">J&amp;M Ch. 9</a></td>
+          <td data-label="Main Ideas">System prompts, zero-shot, few-shot, hallucinations, grounding</td>
+          <td data-label="Practice">Write a strong prompt for summarizing a report.</td>
+          <td data-label="Readings"><a href="https://web.stanford.edu/~jurafsky/slp3/9.pdf" target="_blank">J&amp;M Ch. 9</a></td>
         </tr>
 
         <!-- Week 3 -->
@@ -487,51 +556,51 @@
         <tr>
           <td class="day">15</td>
           <td class="topic">From Models to Products</td>
-          <td>Why raw LLMs are not enough; app architecture; external knowledge</td>
-          <td>Draw a document Q&amp;A application architecture.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Why raw LLMs are not enough; app architecture; external knowledge</td>
+          <td data-label="Practice">Draw a document Q&amp;A application architecture.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">16</td>
           <td class="topic">What is RAG?</td>
-          <td>Chunking, embeddings, vector stores, retrieval plus generation</td>
-          <td>Break one document into chunks and think of likely questions.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Chunking, embeddings, vector stores, retrieval plus generation</td>
+          <td data-label="Practice">Break one document into chunks and think of likely questions.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">17</td>
           <td class="topic">RAG Design Choices</td>
-          <td>Chunk size, overlap, top-k retrieval, grounded answers</td>
-          <td>Compare poor chunking with good chunking.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Chunk size, overlap, top-k retrieval, grounded answers</td>
+          <td data-label="Practice">Compare poor chunking with good chunking.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">18</td>
           <td class="topic">Flowise Basics</td>
-          <td>Chatflows, assistants, agentflows, visual AI orchestration</td>
-          <td>Sketch a Flowise chatflow for a knowledge assistant.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Chatflows, assistants, agentflows, visual AI orchestration</td>
+          <td data-label="Practice">Sketch a Flowise chatflow for a knowledge assistant.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">19</td>
           <td class="topic">Build a Flowise RAG Bot</td>
-          <td>Documents, embeddings, vector store, LLM, testing grounded answers</td>
-          <td>Outline a FAQ or internal document assistant.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Documents, embeddings, vector store, LLM, testing grounded answers</td>
+          <td data-label="Practice">Outline a FAQ or internal document assistant.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">20</td>
           <td class="topic">AI Agents</td>
-          <td>Tools, memory, actions, planning, when to use agents</td>
-          <td>Design an agent that can search documents and answer questions.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Tools, memory, actions, planning, when to use agents</td>
+          <td data-label="Practice">Design an agent that can search documents and answer questions.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
         <tr>
           <td class="day">21</td>
           <td class="topic">Final Mini Project</td>
-          <td>Choose a domain, describe the stack, explain the workflow</td>
-          <td>Create a final project page with problem, solution, and architecture.</td>
-          <td><em>No readings.</em></td>
+          <td data-label="Main Ideas">Choose a domain, describe the stack, explain the workflow</td>
+          <td data-label="Practice">Create a final project page with problem, solution, and architecture.</td>
+          <td data-label="Readings"><em>No readings.</em></td>
         </tr>
       </tbody>
     </table>
